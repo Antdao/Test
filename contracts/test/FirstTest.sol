@@ -13,4 +13,11 @@ contract FirstTest {
     string private _symbol;
     uint8 private _decimals;
     
+    
+    constructor (string memory name_, string memory symbol_) public {
+        _name = name_;
+        _symbol = symbol_;
+        _decimals = 18;
+    }
+    
 }
