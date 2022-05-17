@@ -29,6 +29,18 @@ contract RefundEscrow is ConditionalEscrow {
         _beneficiary = beneficiary_;
         _state = State.Active;
     }
+    /**
+     * @return The current state of the escrow.
+     */
+    function state() public view virtual returns (State) {
+        return _state;
+    }
 
+    /**
+     * @return The beneficiary of the escrow.
+     */
+    function beneficiary() public view virtual returns (address payable) {
+        return _beneficiary;
+    }
    
 }
