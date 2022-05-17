@@ -42,5 +42,23 @@ contract RefundEscrow is ConditionalEscrow {
     function beneficiary() public view virtual returns (address payable) {
         return _beneficiary;
     }
-   
+    
+    /**
+     * @dev Stores funds that may later be refunded.
+     * @param refundee The address funds will be sent to if a refund occurs.
+     */
+    function deposit(address refundee) public payable virtual override {
+        require(state() == State.Active, "RefundEscrow: can only deposit while active");
+        super.deposit(refundee);
+    }
+
+    /**
+     * @dev Allows for the beneficiary to withdraw their funds, rejecting
+     * further deposits.
+     */
+    function close() public virtual onlyOwner {
+        require(state() == State.Active, "RefundEscrow: can only close while active");
+        _state = State.Closed;
+        emit RefundsClosed();
+    }
 }
