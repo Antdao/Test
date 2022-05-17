@@ -61,4 +61,13 @@ contract RefundEscrow is ConditionalEscrow {
         _state = State.Closed;
         emit RefundsClosed();
     }
+    
+    /**
+     * @dev Allows for refunds to take place, rejecting further deposits.
+     */
+    function enableRefunds() public virtual onlyOwner {
+        require(state() == State.Active, "RefundEscrow: can only enable refunds while active");
+        _state = State.Refunding;
+        emit RefundsEnabled();
+    }
 }
