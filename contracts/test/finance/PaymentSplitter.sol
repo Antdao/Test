@@ -88,7 +88,12 @@ contract PaymentSplitter is Context {
         return _released[account];
     }
 
-    
+    /**
+     * @dev Getter for the address of the payee number `index`.
+     */
+    function payee(uint256 index) public view returns (address) {
+        return _payees[index];
+    }
 
     /**
      * @dev Triggers a transfer to `account` of the amount of Ether they are owed, according to their percentage of the
