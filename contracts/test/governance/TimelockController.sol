@@ -152,8 +152,7 @@ contract TimelockController is AccessControl {
     }
 
     /**
-     * @dev Returns the identifier of an operation containing a single
-     * transaction.
+     * @dev Returns the identifier of an operation containing a single transaction.
      */
     function hashOperation(
         address target,
