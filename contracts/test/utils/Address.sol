@@ -29,9 +29,11 @@ library Address {
         // constructor execution.
 
         uint256 size;
+        
         assembly {
             size := extcodesize(account)
         }
+        
         return size > 0;
     }
 
